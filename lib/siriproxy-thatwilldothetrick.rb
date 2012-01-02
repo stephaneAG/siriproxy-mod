@@ -10,7 +10,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
 
   def process(text) 
 #this is the url of your php script - it doesnt have to be local but it does have to be running on a webserver with php
-     url = "http://localhost:8888/siri.php"
+     url = "http://192.168.1.13:8888/siri.php"
      url << URLEscape.escape(text)
      response = ""
      open(url) {
