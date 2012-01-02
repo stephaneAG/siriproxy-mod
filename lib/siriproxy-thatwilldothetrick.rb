@@ -20,16 +20,36 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     # - Return nil (or anything not a Hash or false) to have the object forwarded (along with any
     # modifications made to it)
   end
-
+  
+  ##############################################################################
+  # Six, Siri's new name for personnal cmds
+  
+  # Six awaken ?
   listen_for /six are you awake/i do
-    say "Yup , I am here , up and running better than ever!" #say something to the user!
+    say "Yup Sir, I am right here , up and running better than ever! ...and just a little fly"
     
     request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
   
-  #Demonstrate that you can have Siri say one thing and write another"!
-  listen_for /six what is I go to sleep/i do
-    say "Sometimes I don't mean it ...", spoken: "Sometimes I want to fuck"
+  # Six's daddy ?
+  listen_for /six who's your daddy/i do
+    say "I am your bitch!"
+    
+    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
+  
+  # about the weed ?
+  listen_for /six any weed left/i do
+    say "Sure Sir, we need Weed to workout out smokey way in that long hard work night! ...for my part, I smoke weed everyday"
+    
+    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
+  
+  
+  
+  #Should another join ?
+  listen_for /six should I roll another join/i do
+    say "Sometimes it's the only way ...", spoken: "Actually, everytime...this is it!"
   end
   
   #demonstrate asking a question
@@ -44,6 +64,70 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     
     request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
+  
+  
+  
+  
+  ##############################################################################
+  # Six, room lights cmds
+  
+  #little spot on
+  listen_for /six little spot on/i do
+    say "Switched the little spot on Sir"
+    
+    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
+  
+  #little spot off
+  listen_for /six little spot off/i do
+    say "The little spot is now off Sir"
+    
+    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
+  
+  #middle spot on
+  listen_for /six middle spot on/i do
+    say "Middle spot on Sir"
+    
+    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
+  
+  #middle spot off
+  listen_for /six middle spot off/i do
+    say "A little bit of privacy... understood, Sir"
+    
+    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
+  
+  #big spot on
+  listen_for /six big spot on/i do
+    say "Let there be light!"
+    
+    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
+  
+  #big spot off
+  listen_for /six big spot off/i do
+    say "The darkness for my Lord!"
+    
+    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
+  
+  
+  #outdoor lights on
+  listen_for /six outdoor lights on/i do
+    say "Switched on the Eiffel View Sir"
+    
+    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
+  
+  #outdoor lights off
+  listen_for /six no more outdoor lights/i do
+    say "Balcony to sleep mode"
+    
+    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
+  
   
   #demonstrate capturing data from the user (e.x. "Siri proxy number 15")
   listen_for /six favorite number ([0-9,]*[0-9])/i do |number|
