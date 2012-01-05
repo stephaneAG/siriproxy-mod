@@ -3,8 +3,9 @@ require 'siri_objects'
 require 'open-uri'
 require 'pp'
 require 'url_escape'
-require 'rubygems'
-require 'appscript'
+#require 'rubygems'
+#require 'appscript'
+require 'osax'
 
 class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   def initialize(config)
