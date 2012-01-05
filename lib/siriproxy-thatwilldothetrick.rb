@@ -3,6 +3,8 @@ require 'siri_objects'
 require 'open-uri'
 require 'pp'
 require 'url_escape'
+require 'rubygems'
+require 'appscript'
 
 class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   def initialize(config)
@@ -64,6 +66,20 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     
     request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
+  
+  
+  ##############################################################################
+  # Six, remote computing cmds
+  
+  listen_for /six launch iTunes on my Mac /i do
+    iMaciTunes = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.13/Finder").application_files.ID("com.apple.iTunes")
+      iMaciTunes.open
+      
+    say "I just launched iTunes for you"
+    
+    request_completed
+  end
+  
   
   
   
