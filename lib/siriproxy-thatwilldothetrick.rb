@@ -72,7 +72,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   ##############################################################################
   # Six, remote computing cmds
   
-  listen_for /six launch iTunes on my Mac /i do
+  listen_for /Six, iTunes on Mac /i do
     iMaciTunes = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.13/Finder").application_files.ID("com.apple.iTunes")
       iMaciTunes.open
       
