@@ -5,7 +5,7 @@ require 'pp'
 require 'url_escape'
 #require 'rubygems'
 #require 'appscript'
-require 'osax'
+#require 'osax'
 
 class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   def initialize(config)
