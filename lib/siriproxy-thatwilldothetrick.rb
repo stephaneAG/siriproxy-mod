@@ -96,6 +96,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   
   listen_for /open program/i do
       itu = Appscript.app('iTunes')
+      itu.activate
       itu.run
       itu.play if itu.is_running?
       
