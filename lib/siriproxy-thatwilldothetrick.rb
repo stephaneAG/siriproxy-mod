@@ -75,9 +75,19 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   ##############################################################################
   # Six, remote computing cmds
   
-  listen_for /Six Mac songs/i do
+  listen_for /Six remote Mac songs/i do
     Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.13/Finder").application_files.ID("com.apple.iTunes").open
       iMaciTunes = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.13/iTunes")
+      iMaciTunes.play if itu.is_running?
+      
+    say "I just launched iTunes for you"
+    
+    request_completed
+  end
+  
+  listen_for /Six local Mac songs/i do
+      itu = Appscript.app('iTunes')
+      itu.run
       itu.play if itu.is_running?
       
     say "I just launched iTunes for you"
