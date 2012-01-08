@@ -114,12 +114,9 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
  end
   
   
-   listen_for /open program (.*)/i do |userAction|
-      while userAction.empty? do
-         userAction = ask "What program?"
-      end
-	`osascript -e 'tell application "#{userAction.chop}" to activate'`
-	say "Opening #{userAction.chop}."
+   listen_for /Six I need music/i do |userAction|
+	`osascript -e 'tell application \"iTunes\" to activate'`
+	say 'Opening \"iTunes\"'
         request_completed
     end
   
