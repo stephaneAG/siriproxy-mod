@@ -44,6 +44,15 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
   
+  
+  # Six's daddy ?
+  listen_for /six who's Kelly/i do
+    say "She is a woman my lord used to love!"
+    
+    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
+  
+  
   # about the weed ?
   listen_for /six any weed left/i do
     say "Sure Sir, we need Weed to workout out smokey way in that long hard work night! ...for my part, I smoke weed everyday"
