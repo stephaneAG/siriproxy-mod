@@ -94,32 +94,6 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     request_completed
   end
   
-  listen_for /open tunes app/i do
-      itu = Appscript.app('iTunes')
-      itu.activate
-      itu.run
-      itu.play if itu.is_running?
-      
-    say "I just launched iTunes for you"
-    
-    request_completed
-  end
-  
-  listen_for /open (.*) /i do |appName|
-      app = Appscript.app(appName)
-      app.activate
-      app.run
-      say "Ok, " + appName + " launched."
-      request_completed
- end
-  
-  
-   listen_for /Six I need music/i do |userAction|
-	`osascript -e 'tell application \"iTunes\" to activate'`
-	say 'Opening \"iTunes\"'
-        request_completed
-    end
-  
   
   
   
