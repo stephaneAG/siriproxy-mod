@@ -105,7 +105,13 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     request_completed
   end
   
-  
+  listen_for /open (.*) /i do |appName|
+   app = Appscript.app(appName)
+   app.activate
+	 app.run
+ say "Ok, " + appName + " launched."
+ request_completed
+ end
   
   
   
