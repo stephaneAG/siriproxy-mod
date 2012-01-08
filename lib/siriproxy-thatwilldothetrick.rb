@@ -5,7 +5,10 @@ require 'pp'
 require 'url_escape'
 require 'rubygems' # edited on 08 01 2012
 require 'appscript' # edited on 08 01 2012
+include Appscript# edited on 08 01 2012
 require 'osax' # edited on 08 01 2012
+include OSAX# edited on 08 01 2012
+
 
 class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   def initialize(config)
@@ -73,8 +76,9 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   # Six, remote computing cmds
   
   listen_for /Six Mac songs/i do
-    iMaciTunes = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.13/Finder").application_files.ID("com.apple.iTunes")
-      iMaciTunes.open
+    Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.13/Finder").application_files.ID("com.apple.iTunes").open
+      iMaciTunes = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.13/iTunes")
+      itu.play if itu.is_running?
       
     say "I just launched iTunes for you"
     
