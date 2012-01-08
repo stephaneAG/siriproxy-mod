@@ -21,6 +21,6 @@ Gem::Specification.new do |s|
   # s.add_development_dependency "rspec" # > digg for usability
   # s.add_runtime_dependency "rest-client" # > digg for usability
    s.add_runtime_dependency "url_escape"
-  # s.add_runtime_dependency "rb-appscript" # > adding rb-appscript
+   s.add_runtime_dependency "rb-appscript" # > adding rb-appscript / edited 08 01 2012
    
 end
