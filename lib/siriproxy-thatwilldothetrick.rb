@@ -103,7 +103,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   
   listen_for /Six macbook iTunes/i do
     Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.17/Finder").application_files.ID("com.apple.iTunes").open
-    macbookiTunes = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.13/iTunes")
+    macbookiTunes = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.7/iTunes")
     macbookiTunes.play
     say "I just launched iTunes on your macbookpro for you"
     
