@@ -73,7 +73,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     
     if(response =~ /fuck you/i) #process their response
       `osascript -e 'tell application "System Events" to keystroke (ASCII character 28) using control down'`
-      say "With great pleasure!"
+      say "With great pleasure! Do you want to split my ass today ?"
     else
       say "You could have so much fun with me so horny!"
     end
