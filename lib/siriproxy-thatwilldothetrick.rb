@@ -46,8 +46,8 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   
   
   # Six's daddy ?
-  listen_for /six who's Kelly/i do
-    say "She is a woman my lord used to love!"
+  listen_for /six who's my wife/i do
+    say "A dear made of wood whose name is Roxanne and that my lord used to love!"
     
     request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
@@ -84,7 +84,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   ##############################################################################
   # Six, remote computing cmds
   
-  listen_for /Six remote Mac songs/i do
+  listen_for /Six iMac iTunes/i do
     Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.13/Finder").application_files.ID("com.apple.iTunes").open
       iMaciTunes = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.13/iTunes")
       iMaciTunes.play if itu.is_running?
@@ -97,24 +97,21 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   
   
   # for Mac os spaces
-  listen_for /(.*) space/i do |direction|
+  listen_for /Six (.*) space/i do |direction|
     
     if direction == "left"
         `osascript -e 'tell application "System Events" to keystroke control --left arrow'`
         say "Switching on previous space." 
-    end
     
-    if direction == "right"
+    elsif direction == "right"
         `osascript -e 'tell application "System Events" to keystroke control --right arrow'`
         say "Switching on next space." 
-    end
     
-    if direction == "up"
+    elsif direction == "up"
         `osascript -e 'tell application "System Events" to keystroke control --up arrow'`
         say "Switching on upper space." 
-    end
     
-    if direction == "down"
+    else direction == "down"
         `osascript -e 'tell application "System Events" to keystroke control --down arrow'`
         say "Switching on lower space." 
     end
