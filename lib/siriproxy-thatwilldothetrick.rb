@@ -96,6 +96,32 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   
   
   
+  # for Mac os spaces
+  listen_for /(.*) space/i do |direction|
+    
+    if direction == "left"
+        `osascript -e 'tell application "System Events" to keystroke control --left arrow'`
+        say "Switching on previous space." 
+    end
+    
+    if direction == "right"
+        `osascript -e 'tell application "System Events" to keystroke control --right arrow'`
+        say "Switching on next space." 
+    end
+    
+    if direction == "up"
+        `osascript -e 'tell application "System Events" to keystroke control --up arrow'`
+        say "Switching on upper space." 
+    end
+    
+    if direction == "down"
+        `osascript -e 'tell application "System Events" to keystroke control --down arrow'`
+        say "Switching on lower space." 
+    end
+    
+    request_completed
+  end
+  
   
   ##############################################################################
   # Six, room lights cmds
