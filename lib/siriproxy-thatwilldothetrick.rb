@@ -94,7 +94,11 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     request_completed
   end
   
-  
+  listen_for /left space/i do
+      `osascript -e 'tell application "System Events" to keystroke control --left arrow'`
+        say "Switching on previous space."
+      request_completed
+  end
   
   # for Mac os spaces
   listen_for /Six (.*) space/i do |direction|
