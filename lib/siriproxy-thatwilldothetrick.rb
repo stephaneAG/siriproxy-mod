@@ -45,9 +45,15 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   end
   
   
-  # Six's daddy ?
-  listen_for /six who's Roxanne/i do
+  # Six's daddy's wife ?
+  listen_for /six who's my wife/i do
     say "A dear made of wood whose name is Roxanne and that my lord used to love!"
+    
+    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
+  
+  listen_for /six who's my Kelly/i do
+    say "A great woman my lord used to fell in love with! ....      ... no comments ...."
     
     request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
@@ -72,8 +78,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     response = ask "What the fuck bitch?" #ask the user for something
     
     if(response =~ /fuck you/i) #process their response
-      `osascript -e 'tell application "System Events" to keystroke (ASCII character 28) using control down'`
-      say "With great pleasure! Do you want to split my ass today ?"
+      say "With great pleasure! Do you want to split my ass today ? And then continue to fuck me untill I bleed like the dirty whore I am ?"
     else
       say "You could have so much fun with me so horny!"
     end
@@ -85,39 +90,63 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   ##############################################################################
   # Six, remote computing cmds
   
+  
+  # remote commands using rb-appscript language
   listen_for /Six iMac iTunes/i do
     Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.13/Finder").application_files.ID("com.apple.iTunes").open
-      iMaciTunes = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.13/iTunes")
-      iMaciTunes.play if itu.is_running?
-      
-    say "I just launched iTunes for you"
+    iMaciTunes = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.13/iTunes")
+    iMaciTunes.play
+    say "They don't want the music, they don't know how to use it"
     
     request_completed
   end
   
-  listen_for /find the smart boy/i do
-      `osascript -e 'tell application "System Events" to keystroke (ASCII character 28) using control down --up arrow'`
-        say "Switching on previous space."
-      request_completed
+  listen_for /Six macbook iTunes/i do
+    Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.17/Finder").application_files.ID("com.apple.iTunes").open
+    macbookiTunes = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.13/iTunes")
+    macbookiTunes.play
+    say "I just launched iTunes on your macbookpro for you"
+    
+    request_completed
   end
   
-  # for Mac os spaces
+  listen_for /Six iMac iTunes play/i do
+    iMaciTunes = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.13/iTunes")
+    iMaciTunes.play if iMaciTunes.is_running?
+      
+    say "I just slapped the troubadour's ass"
+    
+    request_completed
+  end
+  
+  listen_for /Six macbook iTunes play/i do
+    macbookiTunes = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.7/iTunes")
+    macbookiTunes.play if macbookiTunes.is_running?
+      
+    say "I just slapped the troubadour's ass"
+    
+    request_completed
+  end
+  
+  # remote commands using osax language
+  
+  # to navigate in Mac os spaces
   listen_for /Six (.*) space/i do |direction|
     
     if direction == "left"
-        `osascript -e 'tell application "System Events" to keystroke control --left arrow'`
+        `osascript -e 'tell application "System Events" to keystroke (ASCII character 28) using control down'`
         say "Switching on previous space." 
     
     elsif direction == "right"
-        `osascript -e 'tell application "System Events" to keystroke control --right arrow'`
+        `osascript -e 'tell application "System Events" to keystroke (ASCII character 29) using control down'`
         say "Switching on next space." 
     
     elsif direction == "up"
-        `osascript -e 'tell application "System Events" to keystroke control --up arrow'`
+        `osascript -e 'tell application "System Events" to keystroke (ASCII character 30) using control down'`
         say "Switching on upper space." 
     
     else direction == "down"
-        `osascript -e 'tell application "System Events" to keystroke control --down arrow'`
+        `osascript -e 'tell application "System Events" to keystroke (ASCII character 31) using control down'`
         say "Switching on lower space." 
     end
     
