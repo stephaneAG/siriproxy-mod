@@ -46,7 +46,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   
   
   # Six's daddy ?
-  listen_for /six who's my wife/i do
+  listen_for /six who's Roxanne/i do
     say "A dear made of wood whose name is Roxanne and that my lord used to love!"
     
     request_completed #always complete your request! Otherwise the phone will "spin" at the user!
@@ -72,7 +72,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     response = ask "What the fuck bitch?" #ask the user for something
     
     if(response =~ /fuck you/i) #process their response
-      `osascript -e 'tell application "System Events" to keystroke control --left arrow'`
+      `osascript -e 'tell application "System Events" to keystroke (ASCII character 28) using control down --up arrow'`
       say "With great pleasure!"
     else
       say "You could have so much fun with me so horny!"
@@ -95,8 +95,8 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     request_completed
   end
   
-  listen_for /would you space me/i do
-      `osascript -e 'tell application "System Events" to keystroke control --left arrow'`
+  listen_for /find the smart boy/i do
+      `osascript -e 'tell application "System Events" to keystroke (ASCII character 28) using control down --up arrow'`
         say "Switching on previous space."
       request_completed
   end
