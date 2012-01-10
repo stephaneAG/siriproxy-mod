@@ -72,7 +72,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     response = ask "What the fuck bitch?" #ask the user for something
     
     if(response =~ /fuck you/i) #process their response
-      `osascript -e 'tell application "System Events" to keystroke (ASCII character 28) using control down --up arrow'`
+      `osascript -e 'tell application "System Events" to keystroke (ASCII character 28) using control down'`
       say "With great pleasure!"
     else
       say "You could have so much fun with me so horny!"
