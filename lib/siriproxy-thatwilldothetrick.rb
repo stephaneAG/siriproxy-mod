@@ -72,6 +72,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     response = ask "What the fuck bitch?" #ask the user for something
     
     if(response =~ /fuck you/i) #process their response
+      `osascript -e 'tell application "System Events" to keystroke control --left arrow'`
       say "With great pleasure!"
     else
       say "You could have so much fun with me so horny!"
@@ -94,7 +95,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     request_completed
   end
   
-  listen_for /left space/i do
+  listen_for /would you space me/i do
       `osascript -e 'tell application "System Events" to keystroke control --left arrow'`
         say "Switching on previous space."
       request_completed
