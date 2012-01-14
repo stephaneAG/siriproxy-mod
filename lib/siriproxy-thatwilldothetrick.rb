@@ -197,6 +197,9 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
       cmd = "say Hello my Lord, wanna monitor some processes ? Have it your way!" 
       system (cmd)
       
+      # optional : go to righter space while proceeding
+      `osascript -e 'tell application "System Events" to keystroke (ASCII character 29) using control down'`
+      
       #preserving the SiriProxy server in a tab
       `osascript -e 'tell application "System Events" to keystroke (ASCII character 116) using command down'`
       
