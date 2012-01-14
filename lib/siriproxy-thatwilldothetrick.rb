@@ -187,6 +187,60 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     request_completed
   end
   
+  # to manage network processes (dukeNetworkProcess!^^) on the computer running SiriProxy server
+  
+  listen_for /Six macbook duke network/i do
+    terminalApp = Appscript.app("/Applications/Utilities/Terminal.app")
+    terminalApp.activate
+      
+      #  welcome user ,from the mac now ;7
+      cmd = "say Hello my Lord, wanna monitor some processes ? Have it your way!" 
+      system (cmd)
+      
+      #preserving the SiriProxy server in a tab
+      `osascript -e 'tell application "System Events" to keystroke (ASCII character 116) using command down'`
+      
+      # opens a new window using the shortcut executed by script
+      `osascript -e 'tell application "System Events" to keystroke (ASCII character 110) using command down'`
+      # executing "top" cmd
+      `osascript -e 'tell app "Terminal" to do script "top" in window 2'`
+      # setting dimensions of the window where i'll be typing cmds ...
+      `osascript -e ' tell application "Terminal" to set bounds of window 1 to {100, 100, 750, 750}'`
+      # moving the window where i'll be typing cmds ...
+      `osascript -e ' tell application "Terminal" to set position of window 1 to {50,100}'`
+      # setting dimensions of the window where i'll be watching stuff happen! ^^ ...
+      `osascript -e ' tell application "Terminal" to set bounds of window 2 to {600, 600, 1400, 1400}'`
+      #  moving the window where i'll be watching stuff happen! ^^ ...
+      `osascript -e ' tell application "Terminal" to set position of window 2 to {750,50}'`
+      # we switch the focus on the first window using the shortcut executed by the script
+      `osascript -e 'tell application "System Events" to keystroke (ASCII character 49) using command down'`
+      # opens a new tab using the shortcut executed by script
+      `osascript -e 'tell application "System Events" to keystroke (ASCII character 116) using command down'`
+      # executing "lsof -i :443" cmd
+      `osascript -e 'tell app "Terminal" to do script "lsof -i :443" in window 1'`
+      # opens a new tab using the shortcut executed by script
+      `osascript -e 'tell application "System Events" to keystroke (ASCII character 116) using command down'`
+      # executing "lsof -i :443 | grep LISTEN" cmd
+      `osascript -e 'tell app "Terminal" to do script "lsof -i :443 | grep LISTEN" in window 1'`
+      # opens a new tab using the shortcut executed by script
+      `osascript -e 'tell application "System Events" to keystroke (ASCII character 116) using command down'`
+      # executing "ps" cmd
+      `osascript -e 'tell app "Terminal" to do script "ps" in window 1'`
+      # we switch the focus on the (second) window used for typing cmds
+      `osascript -e 'tell application "System Events" to keystroke (ASCII character 50) using command down'`
+      
+      # tell user his desktop is ready for monitoring
+      # fun is: "ruby-typed" cmds does not appear in the terminal , even when its launched (not run)[not bckgrnd] (...)
+      cmd = "say Now go hack some Noobs for the Leet conspiracy!"
+      system (cmd)
+      
+      
+      
+    say "Go hackers!"
+    
+    request_completed
+  end
+  
   
   ##############################################################################
   # Six, room lights cmds
