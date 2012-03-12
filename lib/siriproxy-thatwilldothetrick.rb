@@ -351,7 +351,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     		sleep(1) # sleep for a second, just to make sure the callback was succefully printed to the serial
     	end
     	
-    	porte.close # close the serialport instance
+    	port.close # close the serialport instance
     		
     	
     	
