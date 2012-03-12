@@ -338,8 +338,8 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   ##############################################################################
   # Six, Arduino Serial Cmds
   
-  	#outdoor lights off
-  	listen_for /six set the roof on fire/i do
+  	#arduino ledPin on
+  	listen_for /six start the device/i do
     	
     	port = SerialPort.new(port_str, baud_rate, data_bits, stop_bits, parity) # create an instance of the serialport
     	
@@ -358,6 +358,30 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     	say "Arduino left a message for you:" +  @arduino_callback # alert user with callback from the arduino
     	request_completed #finally ,complete the request
   	end
+  	
+  	
+  	
+  	#arduino ledPin on
+  	listen_for /six stop the device/i do
+    	
+    	port = SerialPort.new(port_str, baud_rate, data_bits, stop_bits, parity) # create an instance of the serialport
+    	
+    	while true do # while found, read forever
+    		port.write "light off" # set the light on on the Arduino ledPin
+    		printf("%s", port.gets) # print an output to the console
+    		@arduino_callback = port.gets # stock callback in the callback var
+    		
+    		sleep(1) # sleep for a second, just to make sure the callback was succefully printed to the serial
+    	end
+    	
+    	port.close # close the serialport instance
+    		
+    	
+    	
+    	say "Arduino left a message for you:" +  @arduino_callback # alert user with callback from the arduino
+    	request_completed #finally ,complete the request
+  	end
+  	
   
   
   #demonstrate injection of more complex objects without shortcut methods.
