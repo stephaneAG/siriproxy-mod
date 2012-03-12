@@ -339,7 +339,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   # Six, Arduino Serial Cmds
   
   	#outdoor lights off
-  	listen_for /six arduino light on/i do
+  	listen_for /six set the roof on fire/i do
     	
     	port = SerialPort.new(port_str, baud_rate, data_bits, stop_bits, parity) # create an instance of the serialport
     	
