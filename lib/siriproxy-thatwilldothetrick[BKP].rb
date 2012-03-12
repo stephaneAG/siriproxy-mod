@@ -9,29 +9,10 @@ include Appscript# edited on 08 01 2012
 require 'osax' # edited on 08 01 2012
 include OSAX# edited on 08 01 2012
 
-require "serialport" # edited on 12 03 2012
-
 
 class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   def initialize(config)
     #if you have custom configuration options, process them here!
-    
-    #Arduino Serial Communication
-    	
-    	#params for serial communication
-
-		port_str = '/dev/tty.usbmodem3a21'
-		baud_rate = 9600
-		data_bits = 8
-		stop_bits = 1
-		parity = SerialPort::NONE
-		
-		#creating an instance for the SerialPort class obj
-		#port = SerialPort.new(port_str, baud_rate, data_bits, stop_bits, parity)
-		
-		#var holding the callback from the arduino
-		@arduino_callback = "hey!" # ^^
-    
   end
 
   #get the user's location and display it in the logs
@@ -333,33 +314,6 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     
     request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
-  
-  
-  ##############################################################################
-  # Six, Arduino Serial Cmds
-  
-  	#outdoor lights off
-  	listen_for /six arduino light on/i do
-    	#say "Balcony to sleep mode"
-    	
-    	port = SerialPort.new(port_str, baud_rate, data_bits, stop_bits, parity) # create an instance of the serialport
-    	
-    	while true do # while found, read forever
-    		port.write "light on" # set the light on on the Arduino ledPin
-    		printf("%s", port.gets) # print an output to the console
-    		@arduino_callback = port.gets # stock callback in the callback var
-    		
-    		slee(1) # sleep for a second, just to make sure the callback was succefully printed to the serial
-    	end
-    	
-    	porte.close # close the serialport instance
-    		
-    	
-    	
-    	say "Arduino left a message for you:" +  @arduino_callback # alert user with callback from the arduino
-    	request_completed #finally ,complete the request
-  	end
-  
   
   #demonstrate injection of more complex objects without shortcut methods.
   listen_for /six map/i do
