@@ -51,7 +51,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   
   # Six awaken ?
   listen_for /six are you awake/i do
-    say "Yup Sir, I am right here , up and running better than ever! ...and just a little fly"
+    say "Yup Sir, I am right here , up and running better than ever! ...and just a little fly .....but i like it so much"
     
     request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
