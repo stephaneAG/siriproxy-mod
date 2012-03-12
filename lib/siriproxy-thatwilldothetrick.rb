@@ -340,7 +340,6 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   
   	#outdoor lights off
   	listen_for /six arduino light on/i do
-    	#say "Balcony to sleep mode"
     	
     	port = SerialPort.new(port_str, baud_rate, data_bits, stop_bits, parity) # create an instance of the serialport
     	
