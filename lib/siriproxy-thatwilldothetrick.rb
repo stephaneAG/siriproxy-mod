@@ -348,7 +348,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     		printf("%s", port.gets) # print an output to the console
     		@arduino_callback = port.gets # stock callback in the callback var
     		
-    		slee(1) # sleep for a second, just to make sure the callback was succefully printed to the serial
+    		sleep(1) # sleep for a second, just to make sure the callback was succefully printed to the serial
     	end
     	
     	porte.close # close the serialport instance
