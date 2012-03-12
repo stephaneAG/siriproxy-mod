@@ -339,7 +339,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   # Six, Arduino Serial Cmds
   
   	#arduino ledPin on
-  	listen_for /six start the device/i do
+  	listen_for /six hello world/i do
     	
     	port = SerialPort.new(port_str, baud_rate, data_bits, stop_bits, parity) # create an instance of the serialport
     	
