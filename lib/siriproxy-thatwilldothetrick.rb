@@ -9,22 +9,25 @@ include Appscript# edited on 08 01 2012
 require 'osax' # edited on 08 01 2012
 include OSAX# edited on 08 01 2012
 
-require "ruby-serialport" # edited on 12 03 2012
-#include SerialPort
+require "serialport" # edited on 12 03 2012
 
 class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   def initialize(config)
     #if you have custom configuration options, process them here!
     
-    #Arduino Serial Communication
+    #-- Arduino Serial Communication --
     	
-    	#params for serial communication
-
-		port_str = '/dev/tty.usbmodem3a21'
-		baud_rate = 9600
-		data_bits = 8
-		stop_bits = 1
-		parity = SerialPort::NONE
+    	#--params for serial communication--
+		#port_str = '/dev/tty.usbmodem3a21'
+		#baud_rate = 9600
+		#data_bits = 8
+		#stop_bits = 1
+		#parity = SerialPort::NONE
+		@port_str = config["port_str"]
+		@baud_rate = config["baud_rate"]
+		@data_bits = config["data_bits"]
+		@stop_bits = config["stop_bits"]
+		@parity = config["parity"]
 		
 		#creating an instance for the SerialPort class obj
 		#port = SerialPort.new(port_str, baud_rate, data_bits, stop_bits, parity)
@@ -350,7 +353,8 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
 #  		
 #  		@arduino_callback = "hey!"
     	
-    	port = SerialPort.new(port_str, baud_rate, data_bits, stop_bits, parity) # create an instance of the serialport
+    	#port = SerialPort.new(port_str, baud_rate, data_bits, stop_bits, parity) # create an instance of the serialport
+    	port = SerialPort.new(@port_str, @baud_rate, @data_bits, @stop_bits, @parity) # create an instance of the serialport
     	
     	while true do # while found, read forever
     		sleep(5)
