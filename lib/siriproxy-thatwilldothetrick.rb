@@ -10,7 +10,7 @@ require 'osax' # edited on 08 01 2012
 include OSAX# edited on 08 01 2012
 
 require "serialport" # edited on 12 03 2012
-
+#include SerialPort
 
 class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   def initialize(config)
