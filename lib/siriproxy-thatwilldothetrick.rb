@@ -340,15 +340,25 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   
   	#arduino ledPin on
   	listen_for /six hello world/i do
+  	
+  	
+#  		port_str = '/dev/tty.usbmodem3a21'
+#		baud_rate = 9600
+#		data_bits = 8
+#		stop_bits = 1
+#		parity = SerialPort::NONE
+#  		
+#  		@arduino_callback = "hey!"
     	
     	port = SerialPort.new(port_str, baud_rate, data_bits, stop_bits, parity) # create an instance of the serialport
     	
     	while true do # while found, read forever
+    		sleep(5)
     		port.write "light on" # set the light on on the Arduino ledPin
     		printf("%s", port.gets) # print an output to the console
     		@arduino_callback = port.gets # stock callback in the callback var
     		
-    		sleep(1) # sleep for a second, just to make sure the callback was succefully printed to the serial
+    		sleep(5) # sleep for seconds, just to make sure the callback was succefully printed to the serial
     	end
     	
     	port.close # close the serialport instance
