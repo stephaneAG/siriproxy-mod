@@ -476,7 +476,8 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   	say "Little brother in da place"
   	#Run ruby script on remote machine through SSH connection
   	# ...hum! > for the moment, just a little shell command output on same machine ...
-  	output = 'ruby /Users/stephanegarnier/imagesnap/stephaneAGImgSnapper.rb' #sufiscient to exec a shell cmd
+  	#output = 'ruby /Users/stephanegarnier/imagesnap/stephaneAGImgSnapper.rb' #sufiscient to exec a shell cmd
+  	output = 'ruby /Users/stephaneadamgarnier/imagesnap/stephaneAGImgSnapper.rb' #sufiscient to exec a shell cmd
   	url_from_stdout =  output #stock the output in a var
   	
   	#retrieve a callback from the rb script: the url of the freshly snapped image
