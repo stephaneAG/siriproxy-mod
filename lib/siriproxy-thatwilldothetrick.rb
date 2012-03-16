@@ -19,12 +19,12 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     #-- Local IPs configuration --
     	
     	@imac_ip_adress = config["imac_ip_adress"]
-    	@imac_ssh_user_name = config["imac_ip_adress"]
-    	@imac_ssh_password = config["imac_ip_adress"]
+    	@imac_ssh_user_name = config["imac_ssh_user_name"]
+    	@imac_ssh_password = config["imac_ssh_password"]
     	
     	@macbookpro_ip_adress = config["macbookpro_ip_adress"]
-    	@macbookpro_ssh_user_name = config["imac_ip_adress"]
-    	@macbookpro_ssh_password = config["imac_ip_adress"]
+    	@macbookpro_ssh_user_name = config["macbookpro_ssh_user_name"]
+    	@macbookpro_ssh_password = config["macbookpro_ssh_password"]
     	
     #-- Arduino Serial Communication --
     	
