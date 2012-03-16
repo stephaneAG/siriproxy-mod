@@ -480,8 +480,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
 	#cmd = 'ssh -l stephanegarnier 192.168.1.8 "ruby /Users/stephanegarnier/imagesnap/stephaneAGImgSnapper.rb"'
 	#system(cmd)
 	
-	cmd = 'ssh -l stephanegarnier 192.168.1.8 "say hello dude"'
-	system(cmd)
+	run = `ssh -l stephanegarnier 192.168.1.8 'say hello dude'`
 	
 	#debugAnswer = SiriAnswer.new("DEBUG", [SiriAnswerLine.new('this test is kind of a debug one')])
   	
