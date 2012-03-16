@@ -19,8 +19,13 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     #-- Local IPs configuration --
     	
     	@imac_ip_adress = config["imac_ip_adress"]
+    	@imac_ssh_user_name = config["imac_ip_adress"]
+    	@imac_ssh_password = config["imac_ip_adress"]
+    	
     	@macbookpro_ip_adress = config["macbookpro_ip_adress"]
-    
+    	@macbookpro_ssh_user_name = config["imac_ip_adress"]
+    	@macbookpro_ssh_password = config["imac_ip_adress"]
+    	
     #-- Arduino Serial Communication --
     	
     	#--params for serial communication--
@@ -407,6 +412,38 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   
   ##############################################################################
   # Six, What's happening home ?
+  
+  
+  
+  #Six, test SSH?
+  listen_for /six test iMac remote connection/i do
+  	say "Checking remote SSH connection to iMac"
+  	
+  	#testing / debugging /implementing ssh here
+  	Net::SSH.start(@imac_ip_adress, @imac_ssh_user_name, :password => @imac_ssh_password) do |ssh|
+  		#execute a remote cmd over ssh and wait for eecution to finish before printing out the result
+  		output = exec!('say Hello World')
+  		puts output
+  	end
+  	
+  	add_views = SiriAddViews.new
+    	add_views.make_root(last_ref_id)
+    	
+    	#utterance, aka 'request info/title/...'
+    	utterance = SiriAssistantUtteranceView.new(output)
+    	
+    	#tale = SiriAnswer.new("These are W. S. Words", [SiriAnswerLine.new('Tomorow and tomorrow and tomorrow,Creeps in this petty pace from day to day, To the last syllable of recorded time and all our yesterdays have lighted fools the way to Dusty death. Out out biref candle, life s but a walking shadow, a poor player that struts and frets his hour upon the stage and then is hear no more...  It is a Tale, told by an Idiot, full (> fool ?) of sound and fury, signifying nothing. ')])
+    	
+    	#tale2 = SiriAnswer.new("These are W. S. Words", [SiriAnswerLine.new('macbookpro iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/tef.png')])
+    	
+    	add_views.views << utterance
+  	#add_views.views << SiriAnswerSnippet.new([tale])
+  	#add_views.views << SiriAnswerSnippet.new([tale2])
+  	
+  	send_object add_views
+  	request_completed
+  end
+  
   
   #Six, a little story ?
   listen_for /six tell me a story/i do
