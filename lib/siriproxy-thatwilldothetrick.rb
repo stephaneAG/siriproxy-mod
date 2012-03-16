@@ -491,7 +491,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     	
     	#answer = SiriAnswer.new("From iMac iSight", [SiriAnswerLine.new('iMac iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/image.jpeg')])
     	#answer = SiriAnswer.new("From iMac iSight", [SiriAnswerLine.new('iMac iSight', url_callback)])
-    	answer = SiriAnswer.new("From iMac iSight", [SiriAnswerLine.new('iMac iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/iMacSnapshot.jpeg.jpeg')])
+    	answer = SiriAnswer.new("From iMac iSight", [SiriAnswerLine.new('iMac iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/iMacSnapshot.jpeg')])
     	
     	#answer2 = SiriAnswer.new("From macbookpro iSight", [SiriAnswerLine.new('macbookpro iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/tef.png')])
     	
