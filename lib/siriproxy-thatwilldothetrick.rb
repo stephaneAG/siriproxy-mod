@@ -477,7 +477,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   	#Run ruby script on remote machine through SSH connection
   	# ...hum! > for the moment, just a little shell command output on same machine ...
   	#bypassing, bypassing, ... found! ^^
-	cmd = "ssh -l stephanegarnier 192.168.1.8 'ruby /Users/stephanegarnier/imagesnap/stephaneAGImgSnapper.rb'"
+	cmd = 'ssh -l stephanegarnier 192.168.1.8 "ruby /Users/stephanegarnier/imagesnap/stephaneAGImgSnapper.rb"'
 	system(cmd)
 	#debugAnswer = SiriAnswer.new("DEBUG", [SiriAnswerLine.new('this test is kind of a debug one')])
   	
