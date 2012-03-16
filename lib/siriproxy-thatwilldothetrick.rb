@@ -11,7 +11,8 @@ include OSAX# edited on 08 01 2012
 
 require "serialport" # edited on 12 03 2012
 #require "net/ssh" # edited on 16 03 2012
-require "net-ssh"
+#require "net-ssh"
+
 class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   def initialize(config)
     #if you have custom configuration options, process them here!
