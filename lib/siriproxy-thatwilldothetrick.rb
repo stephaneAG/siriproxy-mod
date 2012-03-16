@@ -21,13 +21,13 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     
     #-- Local IPs configuration --
     	
-    	#@imac_ip_adress = config["imac_ip_adress"]
-    	#@imac_ssh_user_name = config["imac_ssh_user_name"]
-    	#@imac_ssh_password = config["imac_ssh_password"]
+    	@imac_ip_adress = config["imac_ip_adress"]
+    	@imac_ssh_user_name = config["imac_ssh_user_name"]
+    	@imac_ssh_password = config["imac_ssh_password"]
     	
-    	#@macbookpro_ip_adress = config["macbookpro_ip_adress"]
-    	#@macbookpro_ssh_user_name = config["macbookpro_ssh_user_name"]
-    	#@macbookpro_ssh_password = config["macbookpro_ssh_password"]
+    	@macbookpro_ip_adress = config["macbookpro_ip_adress"]
+    	@macbookpro_ssh_user_name = config["macbookpro_ssh_user_name"]
+    	@macbookpro_ssh_password = config["macbookpro_ssh_password"]
     	
     #-- Arduino Serial Communication --
     	
@@ -475,8 +475,12 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   listen_for /six what is happening home/i do
   	say "Little brother in da place"
   	#Run ruby script on remote machine through SSH connection
+  	# ...hum! > for the moment, just a little shell command output on same machine ...
+  	output = 'ruby /Users/stephanegarnier/imagesnap/stephaneAGImgSnapper.rb' #sufiscient to exec a shell cmd
+  	url_from_stdout output #stock the output in a var
   	
   	#retrieve a callback from the rb script: the url of the freshly snapped image
+  	url_callback = url_from_stdout
   	
   	#And process!
   	add_views = SiriAddViews.new
@@ -485,13 +489,13 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     	#utterance, aka 'request info/title/...'
     	utterance = SiriAssistantUtteranceView.new("Here is what i snapped from your iMac iSight camera")
     	
-    	answer = SiriAnswer.new("From iMac iSight", [SiriAnswerLine.new('iMac iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/image.jpeg')])
-    	
-    	answer2 = SiriAnswer.new("From macbookpro iSight", [SiriAnswerLine.new('macbookpro iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/tef.png')])
+    	#answer = SiriAnswer.new("From iMac iSight", [SiriAnswerLine.new('iMac iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/image.jpeg')])
+    	answer = SiriAnswer.new("From iMac iSight", [SiriAnswerLine.new('iMac iSight', url_callback)])
+    	#answer2 = SiriAnswer.new("From macbookpro iSight", [SiriAnswerLine.new('macbookpro iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/tef.png')])
     	
     	add_views.views << utterance
   	add_views.views << SiriAnswerSnippet.new([answer])
-  	add_views.views << SiriAnswerSnippet.new([answer2])
+  	#add_views.views << SiriAnswerSnippet.new([answer2])
   	
   	send_object add_views
   	request_completed
