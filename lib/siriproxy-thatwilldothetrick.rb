@@ -10,10 +10,16 @@ require 'osax' # edited on 08 01 2012
 include OSAX# edited on 08 01 2012
 
 require "serialport" # edited on 12 03 2012
+require "net/ssh" # edited on 16 03 2012
 
 class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   def initialize(config)
     #if you have custom configuration options, process them here!
+    
+    #-- Local IPs configuration --
+    	
+    	@imac_ip_adress = config["imac_ip_adress"]
+    	@macbookpro_ip_adress = config["macbookpro_ip_adress"]
     
     #-- Arduino Serial Communication --
     	
