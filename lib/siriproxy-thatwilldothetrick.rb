@@ -399,6 +399,27 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   	
   
   
+  ##############################################################################
+  # Six, What's happening home ?
+  
+  #Six, display iMac iSight imagesnap
+  listen_for /six what is happening home/i do
+  	
+  	#Run ruby script on remote machine through SSH connection
+  	
+  	#retrieve a callback from the rb script: the url of the freshly snapped image
+  	
+  	#And process!
+  	add_views = SiriAddViews.new
+    	add_views.make_root(last_ref_id)
+    	
+    	answer = SiriAnswer.new("check for yourself", [SiriAnswerLine.new('iMac iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/image.jpeg')])
+  	add_views.views << SiriAnswerSnippet.new([answer])
+  	
+  	send_object add_views
+  	request_completed
+  end
+  
   #demonstrate injection of more complex objects without shortcut methods.
   listen_for /six map/i do
     add_views = SiriAddViews.new
