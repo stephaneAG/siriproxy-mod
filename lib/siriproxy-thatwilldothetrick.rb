@@ -417,14 +417,14 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   
   
   #Six, test SSH?
-  listen_for /six test iMac remote connection/i do
+  listen_for /six test remote connection/i do
   	say "Checking remote SSH connection to iMac"
   	
   	#testing / debugging /implementing ssh here
   	#Net::SSH.start(@imac_ip_adress, @imac_ssh_user_name, :password => @imac_ssh_password) do |ssh|
   	Net::SSH.start('192.168.1.8', 'stephanegarnier', :password => "seedsdesign") do |ssh|
   		#execute a remote cmd over ssh and wait for eecution to finish before printing out the result
-  		output = exec!('say Hello World')
+  		output = ssh.exec!('say Hello World')
   		puts output
   	end
   	
