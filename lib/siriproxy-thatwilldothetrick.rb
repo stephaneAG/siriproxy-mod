@@ -479,7 +479,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   	#bypassing, bypassing, ... found! ^^
 	iMacOutput = "ssh -l stephanegarnier 192.168.1.8 'ruby /Users/stephanegarnier/imagesnap/stephaneAGImgSnapper.rb'"
 	debugStdout = iMacOutput
-	debugAnswer = SiriAnswer.new("DEBUG", [SiriAnswerLine.new(debugStdout)])
+	debugAnswer = SiriAnswer.new("DEBUG", [SiriAnswerLine.new('this test is kind of a debug one')])
   	
   	#And process!
   	add_views = SiriAddViews.new
