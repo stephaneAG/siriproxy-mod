@@ -404,7 +404,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   
   #Six, display iMac iSight imagesnap
   listen_for /six what is happening home/i do
-  	
+  	say "Little brother in da place"
   	#Run ruby script on remote machine through SSH connection
   	
   	#retrieve a callback from the rb script: the url of the freshly snapped image
@@ -413,7 +413,14 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   	add_views = SiriAddViews.new
     	add_views.make_root(last_ref_id)
     	
-    	answer = SiriAnswer.new("check for yourself", [SiriAnswerLine.new('iMac iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/image.jpeg')])
+    	#utterance, aka 'request info/title/...'
+    	utterance = SiriAssistantUtteranceView.new("Here is what i snapped from your iMac iSight camera")
+    	
+    	answer = SiriAnswer.new("check for yourself", 
+    			[SiriAnswerLine.new('iMac iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/image.jpeg')],
+    			[SiriAnswerLine.new('macbook iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/tef.png')])
+    	
+    	add_views.views << utterance
   	add_views.views << SiriAnswerSnippet.new([answer])
   	
   	send_object add_views
