@@ -402,6 +402,28 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   ##############################################################################
   # Six, What's happening home ?
   
+  #Six, a little story ?
+  listen_for /six tell me a story/i do
+  	say "My Lord, you will love this one"
+  	
+  	add_views = SiriAddViews.new
+    	add_views.make_root(last_ref_id)
+    	
+    	#utterance, aka 'request info/title/...'
+    	utterance = SiriAssistantUtteranceView.new("May I say blinds are blessed?")
+    	
+    	tale = SiriAnswer.new("These are W. S. Words", [SiriAnswerLine.new('Tomorow and tomorrow and tomorrow,Creeps in this petty pace from day to day, To the last syllable of recorded time and all our yesterdays have lighted fools the way to Dusty death. Out out biref candle, life s but a walking shadow, a poor player that struts and frets his hour upon the stage and then is hear no more...  It is a Tale, told by an Idiot, full (> fool ?) of sound and fury, signifying nothing. ')])
+    	
+    	#tale2 = SiriAnswer.new("These are W. S. Words", [SiriAnswerLine.new('macbookpro iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/tef.png')])
+    	
+    	add_views.views << utterance
+  	add_views.views << SiriAnswerSnippet.new([tale])
+  	#add_views.views << SiriAnswerSnippet.new([tale2])
+  	
+  	send_object add_views
+  	request_completed
+  end
+  
   #Six, display iMac iSight imagesnap
   listen_for /six what is happening home/i do
   	say "Little brother in da place"
@@ -416,12 +438,13 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     	#utterance, aka 'request info/title/...'
     	utterance = SiriAssistantUtteranceView.new("Here is what i snapped from your iMac iSight camera")
     	
-    	answer = SiriAnswer.new("check for yourself", 
-    			[SiriAnswerLine.new('iMac iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/image.jpeg')],
-    			[SiriAnswerLine.new('macbook iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/tef.png')])
+    	answer = SiriAnswer.new("From iMac iSight", [SiriAnswerLine.new('iMac iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/image.jpeg')])
+    	
+    	answer2 = SiriAnswer.new("From macbookpro iSight", [SiriAnswerLine.new('macbookpro iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/tef.png')])
     	
     	add_views.views << utterance
   	add_views.views << SiriAnswerSnippet.new([answer])
+  	add_views.views << SiriAnswerSnippet.new([answer2])
   	
   	send_object add_views
   	request_completed
