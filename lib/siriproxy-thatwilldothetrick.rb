@@ -421,7 +421,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   end
   
   #demonstrate injection of more complex objects without shortcut methods.
-  listen_for /six map/i do
+  listen_for /six display map/i do
     add_views = SiriAddViews.new
     add_views.make_root(last_ref_id)
     map_snippet = SiriMapItemSnippet.new
