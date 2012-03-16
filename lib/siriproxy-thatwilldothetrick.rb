@@ -18,13 +18,13 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     
     #-- Local IPs configuration --
     	
-    	@imac_ip_adress = config["imac_ip_adress"]
-    	@imac_ssh_user_name = config["imac_ssh_user_name"]
-    	@imac_ssh_password = config["imac_ssh_password"]
+    	#@imac_ip_adress = config["imac_ip_adress"]
+    	#@imac_ssh_user_name = config["imac_ssh_user_name"]
+    	#@imac_ssh_password = config["imac_ssh_password"]
     	
-    	@macbookpro_ip_adress = config["macbookpro_ip_adress"]
-    	@macbookpro_ssh_user_name = config["macbookpro_ssh_user_name"]
-    	@macbookpro_ssh_password = config["macbookpro_ssh_password"]
+    	#@macbookpro_ip_adress = config["macbookpro_ip_adress"]
+    	#@macbookpro_ssh_user_name = config["macbookpro_ssh_user_name"]
+    	#@macbookpro_ssh_password = config["macbookpro_ssh_password"]
     	
     #-- Arduino Serial Communication --
     	
@@ -420,7 +420,8 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   	say "Checking remote SSH connection to iMac"
   	
   	#testing / debugging /implementing ssh here
-  	Net::SSH.start(@imac_ip_adress, @imac_ssh_user_name, :password => @imac_ssh_password) do |ssh|
+  	#Net::SSH.start(@imac_ip_adress, @imac_ssh_user_name, :password => @imac_ssh_password) do |ssh|
+  	Net::SSH.start('192.168.1.8', 'stephanegarnier', :password => "seedsdesign") do |ssh|
   		#execute a remote cmd over ssh and wait for eecution to finish before printing out the result
   		output = exec!('say Hello World')
   		puts output
