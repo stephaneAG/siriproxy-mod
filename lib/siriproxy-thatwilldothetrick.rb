@@ -477,9 +477,9 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   	#Run ruby script on remote machine through SSH connection
   	# ...hum! > for the moment, just a little shell command output on same machine ...
   	#bypassing, bypassing, ... found! ^^
-	iMacOutput = "ssh -l stephanegarnier 192.168.1.8 'ruby /Users/stephanegarnier/imagesnap/stephaneAGImgSnapper.rb'"
-	debugStdout = iMacOutput
-	debugAnswer = SiriAnswer.new("DEBUG", [SiriAnswerLine.new('this test is kind of a debug one')])
+	cmd = "ssh -l stephanegarnier 192.168.1.8 'ruby /Users/stephanegarnier/imagesnap/stephaneAGImgSnapper.rb'"
+	system(cmd)
+	#debugAnswer = SiriAnswer.new("DEBUG", [SiriAnswerLine.new('this test is kind of a debug one')])
   	
   	#And process!
   	add_views = SiriAddViews.new
@@ -495,7 +495,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     	#answer2 = SiriAnswer.new("From macbookpro iSight", [SiriAnswerLine.new('macbookpro iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/tef.png')])
     	
     	add_views.views << utterance
-    	add_views.views << SiriAnswerSnippet.new([debugAnswer])
+    	#add_views.views << SiriAnswerSnippet.new([debugAnswer])
   	add_views.views << SiriAnswerSnippet.new([answer])
   	#add_views.views << SiriAnswerSnippet.new([answer2])
   	
