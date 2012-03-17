@@ -585,7 +585,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     	#utterance, aka 'request info/title/...'
     	utterance = SiriAssistantUtteranceView.new("Here is what i snapped from the Siriproxy server iSight")
     	
-    	answer = SiriAnswer.new("Your playground ... I do miss it too", [SiriAnswerLine.new('SiriProxy iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/macbookSnapshot.jpeg')])
+    	answer = SiriAnswer.new("Your playground ... I do miss it too", [SiriAnswerLine.new('SiriProxy iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/macbookproSnapshot.jpeg')])
     	
     	add_views.views << utterance
   	add_views.views << SiriAnswerSnippet.new([answer])
