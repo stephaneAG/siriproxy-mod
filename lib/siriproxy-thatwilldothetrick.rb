@@ -510,7 +510,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   
   # WIP > SHH FORWARD FROM LOCAL RB SCRIPT TO IMAC
   #Six, display iMac iSight imagesnap
-  listen_for /six what is happening today/i do
+  listen_for /six i am home sick/i do
   	say "Our special receipe for today"
   	#Run ruby script on remote machine through SSH connection
 	run = `ruby /Users/stephaneadamgarnier/imagesnap/ssh_forwarder.rb`
