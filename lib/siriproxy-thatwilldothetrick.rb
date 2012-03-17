@@ -13,7 +13,7 @@ require "serialport" # edited on 12 03 2012
 
 #gem "net-ssh"
 #require "net/ssh" # edited on 16 03 2012
-gem 'net-ssh', '~> 2.0.4'
+#gem 'net-ssh', '~> 2.0.4'
 
 
 class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
@@ -412,6 +412,44 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     	
   	end
   	
+  	
+  	
+  	#arduino breadboard LED fade in
+  	listen_for /six let there be light/i do
+    	
+    	port = SerialPort.new(@port_str, @baud_rate, @data_bits, @stop_bits, @parity)
+    	
+    		sleep(2)
+    		port.write "fade in" 
+    		#printf("%s", port.gets) # print an output to the console
+    		arduino_callback = port.gets # stock callback in the callback var
+    		
+    		sleep(2) # sleep for seconds, just to make sure the callback was succefully printed to the serial
+    	#port.close
+    	say arduino_callback # alert user with callback from the arduino
+    	request_completed #finally ,complete the request
+    	
+  	end
+  	
+  	
+  	
+  	#arduino breadboard LED fade in
+  	listen_for /six fade it now/i do
+    	
+    	port = SerialPort.new(@port_str, @baud_rate, @data_bits, @stop_bits, @parity)
+    	
+    		sleep(2)
+    		port.write "fade out" 
+    		#printf("%s", port.gets) # print an output to the console
+    		arduino_callback = port.gets # stock callback in the callback var
+    		
+    		sleep(2) # sleep for seconds, just to make sure the callback was succefully printed to the serial
+    	#port.close
+    	say arduino_callback # alert user with callback from the arduino
+    	request_completed #finally ,complete the request
+    	
+  	end
+  	
   
   
   ##############################################################################
@@ -424,8 +462,8 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   	say "Checking remote SSH connection to iMac"
   	
   	#testing / debugging /implementing ssh here
-  	#Net::SSH.start(@imac_ip_adress, @imac_ssh_user_name, :password => @imac_ssh_password) do |ssh|
-  	Net::SSH.start('192.168.1.8', 'stephanegarnier', :password => "seedsdesign") do |ssh|
+  	Net::SSH.start(@imac_ip_adress, @imac_ssh_user_name, :password => @imac_ssh_password) do |ssh|
+  	#Net::SSH.start('192.168.1.8', 'stephanegarnier', :password => "seedsdesign") do |ssh|
   		#execute a remote cmd over ssh and wait for eecution to finish before printing out the result
   		output = ssh.exec!('say Hello World')
   		puts output
@@ -524,6 +562,30 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     	utterance = SiriAssistantUtteranceView.new("Here is what i snapped from your iMac iSight camera today")
     	
     	answer = SiriAnswer.new("From iMac iSight", [SiriAnswerLine.new('iMac iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/iMacSnapshot.jpeg')])
+    	
+    	add_views.views << utterance
+  	add_views.views << SiriAnswerSnippet.new([answer])
+  	
+  	send_object add_views
+  	request_completed
+  end
+  
+  
+  
+  #Six, display iMac iSight imagesnap
+  listen_for /six home screenshot please/i do
+  	say "Sure. I will snap it up for you"
+  	#Run ruby script on remote machine through SSH connection
+	run = `ruby /Users/stephaneadamgarnier/imagesnap/stephaneAGImgSnapper.rb`
+	
+  	#And process!
+  	add_views = SiriAddViews.new
+    	add_views.make_root(last_ref_id)
+    	
+    	#utterance, aka 'request info/title/...'
+    	utterance = SiriAssistantUtteranceView.new("Here is what i snapped from the Siriproxy server iSight")
+    	
+    	answer = SiriAnswer.new("Your playground ... I do miss it too", [SiriAnswerLine.new('SiriProxy iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/macbookSnapshot.jpeg')])
     	
     	add_views.views << utterance
   	add_views.views << SiriAnswerSnippet.new([answer])
