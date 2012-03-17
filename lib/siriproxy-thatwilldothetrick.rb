@@ -13,6 +13,7 @@ require "serialport" # edited on 12 03 2012
 
 #gem "net-ssh"
 #require "net/ssh" # edited on 16 03 2012
+gem 'net-ssh', '~> 2.0.4'
 
 
 class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
