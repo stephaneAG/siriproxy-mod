@@ -507,6 +507,33 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   	request_completed
   end
   
+  
+  # WIP > SHH FORWARD FROM LOCAL RB SCRIPT TO IMAC
+  #Six, display iMac iSight imagesnap
+  listen_for /six what is happening today/i do
+  	say "Our special receipe for today"
+  	#Run ruby script on remote machine through SSH connection
+	run = `ruby /Users/stephaneadamgarnier/imagesnap/ssh_forwarder.rb`
+	
+  	#And process!
+  	add_views = SiriAddViews.new
+    	add_views.make_root(last_ref_id)
+    	
+    	#utterance, aka 'request info/title/...'
+    	utterance = SiriAssistantUtteranceView.new("Here is what i snapped from your iMac iSight camera today")
+    	
+    	answer = SiriAnswer.new("From iMac iSight", [SiriAnswerLine.new('iMac iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/iMacSnapshot.jpeg')])
+    	
+    	add_views.views << utterance
+  	add_views.views << SiriAnswerSnippet.new([answer])
+  	
+  	send_object add_views
+  	request_completed
+  end
+  
+  
+  
+  
   #demonstrate injection of more complex objects without shortcut methods.
   listen_for /six display map/i do
     add_views = SiriAddViews.new
