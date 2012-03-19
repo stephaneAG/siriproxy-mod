@@ -455,8 +455,8 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   
   listen_for /Six rock my world/i do
     iMacTerminal = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.8/Terminal")
-    #iMacTerminal.do_script("say hello dudes")
-    iMacTerminal.current_terminal.sessions.write(:text => "echo 'say Hello Dudes'")
+    iMacTerminal.do_script("say hello dudes")
+    # > find a way to do same cmd in background
     say "Did i rock your world good"
     
     request_completed
@@ -484,7 +484,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     	utterance = SiriAssistantUtteranceView.new("Here is what we got")
     	
     	answer = SiriAnswer.new("From StephaneAG", [SiriAnswerLine.new('iMac iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/iMacSnapshot.jpeg')])
-    	answer2 = SiriAnswer.new("From StephaneAG", [SiriAnswerLine.new('macbookpro iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/macbookproSnapshot.png')])
+    	answer2 = SiriAnswer.new("From StephaneAG", [SiriAnswerLine.new('macbookpro iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/macbookproSnapshot.jpeg')])
     	
     	add_views.views << utterance
   	add_views.views << SiriAnswerSnippet.new([answer])
