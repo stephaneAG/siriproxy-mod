@@ -455,7 +455,7 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   
   listen_for /Six rock my world/i do
     iMacTerminal = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.8/Terminal")
-    iMacTerminal.do_script("say hello dudes")
+    iMacTerminal.do_shell_script("say hello dudes")
     say "Did i rock your world good"
     
     request_completed
@@ -465,6 +465,27 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
     iMacTerminal = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.8/Terminal")
     iMacTerminal.do_script("ruby /Users/stephanegarnier/imagesnap/stephaneAGImgSnapper.rb")
     say "I burned their asses brown"
+    
+    request_completed
+  end
+  
+  listen_for /Six display friends places/i do
+    say "All right, fetching the images from your server"
+    
+    	add_views = SiriAddViews.new
+    	add_views.make_root(last_ref_id)
+    	
+    	#utterance, aka 'request info/title/...'
+    	utterance = SiriAssistantUtteranceView.new("Here is what we got")
+    	
+    	answer = SiriAnswer.new("From StephaneAG", [SiriAnswerLine.new('iMac iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/iMacSnapshot.jpeg')])
+    	answer2 = SiriAnswer.new("From StephaneAG", [SiriAnswerLine.new('macbookpro iSight', 'http://www.stephaneadamgarnier.com/SiriProxyImgSnap/macbookproSnapshot.png')])
+    	
+    	add_views.views << utterance
+  	add_views.views << SiriAnswerSnippet.new([answer])
+  	add_views.views << SiriAnswerSnippet.new([answer2])
+  	
+  	send_object add_views
     
     request_completed
   end
