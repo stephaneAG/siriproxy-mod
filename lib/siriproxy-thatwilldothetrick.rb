@@ -455,7 +455,8 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   
   listen_for /Six rock my world/i do
     iMacTerminal = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.8/Terminal")
-    iMacTerminal.do_shell_script("say hello dudes")
+    #iMacTerminal.do_script("say hello dudes")
+    iMacTerminal.current_terminal.sessions.write(:text => "echo 'say Hello Dudes'")
     say "Did i rock your world good"
     
     request_completed
@@ -464,6 +465,10 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   listen_for /Six set it on fire/i do
     iMacTerminal = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.8/Terminal")
     iMacTerminal.do_script("ruby /Users/stephanegarnier/imagesnap/stephaneAGImgSnapper.rb")
+    
+    serverTerminal = Appscript.app("/Applications/Utilities/Terminal.app")
+    serverTerminal.do_script("ruby /Users/stephaneadamgarnier/imagesnap/stephaneAGImgSnapper.rb")
+    
     say "I burned their asses brown"
     
     request_completed
