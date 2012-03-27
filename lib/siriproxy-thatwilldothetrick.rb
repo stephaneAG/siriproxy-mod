@@ -455,8 +455,9 @@ class SiriProxy::Plugin::ThatWillDoTheTrick < SiriProxy::Plugin
   ##############################################################################
   # Six, extend facetime possibilities ?	
   
-  listen_for /Six iMac remote facetime call/i do
+  listen_for /Six iMac remote facetime/i do
     iMacTerminal = Appscript.app.by_url("eppc://SiriAdmin:siritest@192.168.1.8/Terminal")
+    iMacTerminal.activate
     iMacTerminal.do_script("ruby /Users/stephanegarnier/iMac_ruby_dev/remote_facetime/initiate_facetime_call.rb")
     
     say "Your iMac will call you in few seconds"
